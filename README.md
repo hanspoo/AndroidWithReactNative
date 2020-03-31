@@ -1,64 +1,38 @@
-Agregar react-native a proyecto Android existente
-=================================================
+Add react native to existing Android Project
+=============================================
+Below are the minimal steps and modifications necessary to add react-native to a pre-existing android project. For this demo we have the two projects at the same level.
 
-Antes de usar:
+For the react-native project we have used the “bare workflow” with typescript. For the Android project we have used the “Empty Activity” template with Java.
 
-
-Levantar el packager
-
-
-```
-cd /tmp
-git clone https://github.com/hanspoo/AndroidMasReactNativo
-cd AndroidMasReactNativo/proyectoreact
-yarn install
-yarn start
-```
-En otro terminal levantar android. También lo pueden importar y lanzar desde android estudio o hacer:
-
-```
-cd /tmp/AndroidMasReactNativo
-cd MyApplication
-adb reverse tcp:8081 tcp:8081
-./gradlew installDebug
-adb shell am start -n com.demo.myapplication/.MyReactActivity
-```
-
-## Como Agregar React Native a tu proyecto Android
-
-A continuación se explican los pasos y modificaciones mínimos necesarios para agregar react-native a un proyecto android preexistente. Para este demo hemos los dos proyectos al mismo nivel uno con android studio el otro con expo-cli.
-
-Para el proyecto react-native hemos usado el flujo “bare workflow” con typescript. Para el proyecto Android hemos usado el template “Empty Activity” con Java.
-
-En el proyecto react-native recien creado
+React native side
 ---------------------------------------------
 
-Sólo hay que instalar javascript runtime jsc-android.
+Just install javascript core librarie jsc-android.
  
 ```
-expo init proyectoreact -t expo-template-bare-typescript
+expo init projectrect -t expo-template-bare-typescript
 
-cd proyectoreact/
+cd projectrect/
 
 yarn add jsc-android
 ```
 
-En el proyecto Android
+Android Side
 ----------------------
 
 ### build.gradle
 
-En este archivo. Sólo se agregan dos repositorios de tipo maven. Deben referencian el proyecto RN recién creado.
+In this project level file we add two maven repositores. They point below node_modules in the RN (react native) project.
 
 ```
 allprojects {
     repositories {
     ...
         maven {
-            url "$rootDir/../proyectoreact/node_modules/react-native/android"
+            url "$rootDir/../projectrect/node_modules/react-native/android"
         }
         maven {
-            url("$rootDir/../proyectoreact/node_modules/jsc-android/dist")
+            url("$rootDir/../projectrect/node_modules/jsc-android/dist")
         }
     }
 
@@ -66,7 +40,7 @@ allprojects {
 ```
 
 ### app/build.gradle
-Sólo se agregan 3 dependencias.
+In the app level build.gradle just add 3 dependencies.
  
 ```
 dependencies {
@@ -77,9 +51,10 @@ dependencies {
 }
 ```
 
-### La vista/aplicación react-native
 
-El nombre ***proyectoreact*** debe ser el mismo registrado por el app react native, normalmente la propiedad name en ***proyectoreact/app.json***. Esta actividad la creamos en la carpeta de código fuente donde estan quedando las actividades de Android, normalmente algo como ***src/main/xxx/yyy***. Hemos omitido la declaracion package para que salga más fácil de copiar y pegar.
+### The RN view
+
+The parameter to startReactApplication should be the same of the RN project, usually the name property in ***projectreact/app.json***. We create this activity besides the other activities in the java source code folder, usually something like ***src/main/xxx/yyy***. We have omitted the package declaration to make it easier to copy and paste.
 
 
 ```
@@ -112,7 +87,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .build();
         // The string here (e.g. "MyReactNativeApp") has to match
         // the string in AppRegistry.registerComponent() in index.js
-        mReactRootView.startReactApplication(mReactInstanceManager, "proyectoreact", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "projectrect", null);
         setContentView(mReactRootView);
     }
     @Override
@@ -164,15 +139,15 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
 
 ### AndroidManifest.xml
 
-Para todos los efectos la actividad recién creada MyReactActivity es igual a cualquiera del proyecto android y como tal se puede agregar en el manifiesto, incluso de partida como es el caso. Se han agregado:
+For all purposes, the newly created MyReactActivity activity is like any other. and as such can be added to the manifest, even as a starting activity. The following are the modifications:
 
-Permisos
+Permissions
 ```    <uses-permission android:name="android.permission.INTERNET" />```
 
-Poder acceder al bundle JS en modo dev
+To be able to load JS bundle from port 8081.
 ```        android:usesCleartextTraffic="true"```
 
-La actividad de devSettings con shake o Ctrl-M.
+Development menu Activity, shake or Ctrl-M.
 ```        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />            ```
 
 ```
@@ -203,6 +178,6 @@ La actividad de devSettings con shake o Ctrl-M.
     </application>
 </manifest>
 ```
-Si dejamos la de react como de partida, debemos quitarle el intent-filter a la predeterminada.
+We are starting with the react activity, so we have put the intent filter in it.
 
 
