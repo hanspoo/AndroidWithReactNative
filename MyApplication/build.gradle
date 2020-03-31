@@ -21,11 +21,11 @@ allprojects {
         google()
         jcenter()
         maven {
-            url "$rootDir/../proyectoreact/node_modules/react-native/android"
+            url "$rootDir/../reactproject/node_modules/react-native/android"
         }
         maven {
             // Android JSC is installed from npm
-            url("$rootDir/../proyectoreact/node_modules/jsc-android/dist")
+            url("$rootDir/../reactproject/node_modules/jsc-android/dist")
         }
 
     }
