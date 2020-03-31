@@ -203,7 +203,7 @@ react-native bundle --platform android --dev false --entry-file index.js \
 --assets-dest ../MyApplication/app/src/main/res
 ```
 
-Create signed apk using android and the install on the device.  
+Create signed apk using android and then install on the device.  
 ```
 cd  ../MyApplication
 adb install ./app/release/app-release.apk 
