@@ -1,9 +1,9 @@
 {
-  "name": "proyectoreact",
-  "displayName": "proyectoreact",
+  "name": "reactproject",
+  "displayName": "reactproject",
   "expo": {
-    "name": "proyectoreact",
-    "slug": "proyectoreact",
+    "name": "reactproject",
+    "slug": "reactproject",
     "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "version": "1.0.0",

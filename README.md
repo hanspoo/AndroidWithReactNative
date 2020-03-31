@@ -1,15 +1,17 @@
 Add react native to existing Android Project
 =============================================
 Below are the minimal steps and modifications necessary to add react-native to a pre-existing android project. For this demo we have the two projects at the same level.
-
 For the react-native project we have used the “bare workflow” with typescript. For the Android project we have used the “Empty Activity” template with Java.
 
 React native side
 ---------------------------------------------
-
 Just install javascript core librarie jsc-android.
  
 ```
+
+mkdir /tmp/integration1
+cd /tmp/integration1
+
 expo init projectrect -t expo-template-bare-typescript
 
 cd projectrect/
@@ -19,10 +21,10 @@ yarn add jsc-android
 
 Android Side
 ----------------------
-
 ### build.gradle
 
 In this project level file we add two maven repositores. They point below node_modules in the RN (react native) project.
+Create the project under in /tmp/integration1 folder.
 
 ```
 allprojects {
@@ -54,7 +56,7 @@ dependencies {
 
 ### The RN view
 
-The parameter to startReactApplication should be the same of the RN project, usually the name property in ***projectreact/app.json***. We create this activity besides the other activities in the java source code folder, usually something like ***src/main/xxx/yyy***. We have omitted the package declaration to make it easier to copy and paste.
+The parameter to startReactApplication should be the same of the RN project, usually the name property in ***reactproject/app.json***. We create this activity besides the other activities in the java source code folder, usually something like ***src/main/xxx/yyy***. We have omitted the package declaration to make it easier to copy and paste.
 
 
 ```
