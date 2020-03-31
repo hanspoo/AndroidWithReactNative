@@ -12,9 +12,9 @@ Just install javascript core librarie jsc-android.
 mkdir /tmp/integration1
 cd /tmp/integration1
 
-expo init projectrect -t expo-template-bare-typescript
+expo init reactproject -t expo-template-bare-typescript
 
-cd projectrect/
+cd reactproject/
 
 yarn add jsc-android
 ```
@@ -31,10 +31,10 @@ allprojects {
     repositories {
     ...
         maven {
-            url "$rootDir/../projectrect/node_modules/react-native/android"
+            url "$rootDir/../reactproject/node_modules/react-native/android"
         }
         maven {
-            url("$rootDir/../projectrect/node_modules/jsc-android/dist")
+            url("$rootDir/../reactproject/node_modules/jsc-android/dist")
         }
     }
 
@@ -89,7 +89,7 @@ public class MyReactActivity extends Activity implements DefaultHardwareBackBtnH
                 .build();
         // The string here (e.g. "MyReactNativeApp") has to match
         // the string in AppRegistry.registerComponent() in index.js
-        mReactRootView.startReactApplication(mReactInstanceManager, "projectrect", null);
+        mReactRootView.startReactApplication(mReactInstanceManager, "reactproject", null);
         setContentView(mReactRootView);
     }
     @Override
