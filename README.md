@@ -186,11 +186,11 @@ We are starting with the react activity, so we have put the intent filter in it.
 
 Before running the android project, remember to start the packager in the react project:
 
-yarn start
+```yarn start ```
 
 Don't forget to reverse proxy port 8081
 
-adb reverse tcp:8081 tcp:8081
+```adb reverse tcp:8081 tcp:8081 ```
  
 
 
