@@ -193,9 +193,17 @@ Don't forget to reverse proxy port 8081
 ```adb reverse tcp:8081 tcp:8081 ```
  
 
+## Making release apk
 
+```
+cd reactproject
+mkdir ../MyApplication/app/src/main/assets
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output ../MyApplication/app/src/main/assets/index.android.bundle --assets-dest ../MyApplication/app/src/main/res
+```
 
-
+Create signed apk using android and the install on the device.  
+cd  ../MyApplication
+``` adb install ./app/release/app-release.apk ```
 
 
 
