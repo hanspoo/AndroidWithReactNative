@@ -195,6 +195,8 @@ Don't forget to reverse proxy port 8081
 
 ## Making release apk
 
+### Create React JS Bundle and put it in Android Project
+
 ```
 cd reactproject
 mkdir ../MyApplication/app/src/main/assets
@@ -203,7 +205,8 @@ react-native bundle --platform android --dev false --entry-file index.js \
 --assets-dest ../MyApplication/app/src/main/res
 ```
 
-Create signed apk using android and then install on the device.  
+Create signed apk using android studio, with next command install apk in the device.
+
 ```
 cd  ../MyApplication
 adb install ./app/release/app-release.apk 
