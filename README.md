@@ -58,6 +58,14 @@ dependencies {
 
 The parameter to startReactApplication should be the same of the RN project, usually the name property in ***reactproject/app.json***. We create this activity besides the other activities in the java source code folder, usually something like ***src/main/xxx/yyy***. We have omitted the package declaration to make it easier to copy and paste.
 
+With expo version 36 as of Abril 6th expo modules doesn't register as the app name, but with a generic name: "main".
+
+so
+        mReactRootView.startReactApplication(mReactInstanceManager, "reactproject", null);
+should be
+        mReactRootView.startReactApplication(mReactInstanceManager, "main", null);
+
+It's consistent, the names must match, so the error is loading the bundle.
 
 ```
 import android.app.Activity;
