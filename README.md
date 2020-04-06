@@ -61,9 +61,9 @@ The parameter to startReactApplication should be the same of the RN project, usu
 With expo version 36 as of Abril 6th expo modules doesn't register as the app name, but with a generic name: "main".
 
 so
-        mReactRootView.startReactApplication(mReactInstanceManager, "reactproject", null);
+```        mReactRootView.startReactApplication(mReactInstanceManager, "reactproject", null);```
 should be
-        mReactRootView.startReactApplication(mReactInstanceManager, "main", null);
+```        mReactRootView.startReactApplication(mReactInstanceManager, "main", null);```
 
 It's consistent, the names must match, so the error is loading the bundle.
 
